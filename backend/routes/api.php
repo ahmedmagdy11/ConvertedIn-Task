@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,3 +20,4 @@ Route::prefix("/task")->group(function () {
     Route::post("/", [TaskController::class, "create"]);
     Route::get("/", [TaskController::class, "get"]);
 });
+Route::get("/leaderboard", [UserController::class, "leaderboard"]);
