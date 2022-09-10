@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::prefix("/user")->group(function () {
+    Route::get("/admins", [UserController::class, "getAdmins"]);
+    Route::get("/users", [UserController::class, "getUsers"]);
+});
 Route::prefix("/task")->group(function () {
     Route::post("/", [TaskController::class, "create"]);
     Route::get("/", [TaskController::class, "get"]);
