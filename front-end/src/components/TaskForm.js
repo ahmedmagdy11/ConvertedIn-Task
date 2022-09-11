@@ -1,8 +1,10 @@
 import React, { useRef, useState } from "react";
 import AdminDropDown from "./AdminDropDown";
 import UserDropDown from "./UserDropDown";
+import { useNavigate } from "react-router-dom";
 
 const TaskForm = () => {
+    const navigate = useNavigate();
     const [assignedById, assignedByIdState] = useState(null);
     const [assignedToId, assignedToIdState] = useState(null);
 
@@ -11,10 +13,10 @@ const TaskForm = () => {
     const noErrorRef = useRef();
     const ErrorRef = useRef();
 
-    const fromSubmit = async (event) => {
+    async function fromSubmit(event) {
         event.preventDefault();
         const Body = {
-            "assigned_by_id" : assignedById,
+            "assigned_by_id": assignedById,
             "assigned_to_id": assignedToId,
             title: title.current.value,
             description: description.current.value
@@ -38,6 +40,7 @@ const TaskForm = () => {
                     noErrorRef.current.innerHTML = "user Created Succesfully ";
                 }
             }
+            navigate("/leadboard");
         } catch (err) {
             console.log(err);
             ErrorRef.current.innerHTML = `${err}`;
@@ -46,8 +49,8 @@ const TaskForm = () => {
 
     return (
         <form className="create-form" onSubmit={fromSubmit}>
-            <AdminDropDown assignedByIdState = {assignedByIdState}/> <br />
-            <UserDropDown assignedToIdState = {assignedToIdState}/> <br />
+            <AdminDropDown assignedByIdState={assignedByIdState} /> <br />
+            <UserDropDown assignedToIdState={assignedToIdState} /> <br />
             <input
                 type="text"
                 id="title"
