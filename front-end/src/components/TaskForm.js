@@ -27,6 +27,7 @@ const TaskForm = () => {
                     "content-type": "application/json",
                 },
             });
+            console.log("data", Body);
             console.log(response.status);
             if (response.ok) {
                 const finalRes = await response.json();
@@ -45,8 +46,8 @@ const TaskForm = () => {
 
     return (
         <form className="create-form" onSubmit={fromSubmit}>
-            <AdminDropDown props = {assignedByIdState}/> <br />
-            <UserDropDown props = {assignedToIdState}/> <br />
+            <AdminDropDown assignedByIdState = {assignedByIdState}/> <br />
+            <UserDropDown assignedToIdState = {assignedToIdState}/> <br />
             <input
                 type="text"
                 id="title"
